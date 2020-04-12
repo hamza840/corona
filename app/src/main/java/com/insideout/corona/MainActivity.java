@@ -35,8 +35,6 @@ public class MainActivity extends AppCompatActivity {
         TabLayout tabs = findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
 
-        UpdateTask updateTask=new UpdateTask();
-        updateTask.doInBackground("");
 
     }
 
