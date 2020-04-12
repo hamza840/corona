@@ -17,6 +17,10 @@ import android.view.View;
 
 import com.insideout.corona.ui.main.SectionsPagerAdapter;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
 
 import okhttp3.OkHttpClient;
@@ -53,7 +57,15 @@ public class MainActivity extends AppCompatActivity {
 
             super.onPostExecute(o);
 
-            System.out.println(o+"");
+            try {
+//                JSONObject jsonObject=new JSONObject(o.toString());
+                JSONArray jsonArray=new JSONArray(o.toString());
+                String s=jsonArray.getJSONObject(0).get("confirmed").toString();
+                System.out.println(s);
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         }
 
         @Override
