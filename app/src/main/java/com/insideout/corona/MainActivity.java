@@ -36,13 +36,28 @@ public class MainActivity extends AppCompatActivity {
         tabs.setupWithViewPager(viewPager);
 
 
+        OkHttpHandler okHttpHandler= new OkHttpHandler();
+        okHttpHandler.execute("https://covid-19-data.p.rapidapi.com/totals?format=undefined");
+
+
     }
 
-    private class UpdateTask extends AsyncTask<String, String,String> {
-        protected String doInBackground(String... urls) {
 
-            OkHttpClient client = new OkHttpClient();
+    public class OkHttpHandler extends AsyncTask {
 
+        OkHttpClient client = new OkHttpClient();
+
+
+        @Override
+        protected void onPostExecute(Object o) {
+
+            super.onPostExecute(o);
+
+            System.out.println(o+"");
+        }
+
+        @Override
+        protected Object doInBackground(Object[] objects) {
             Request request = new Request.Builder()
                     .url("https://covid-19-data.p.rapidapi.com/totals?format=undefined")
                     .get()
@@ -52,12 +67,33 @@ public class MainActivity extends AppCompatActivity {
 
             try {
                 Response response = client.newCall(request).execute();
-                response = client.newCall(request).execute();
-            } catch (IOException e) {
+                return response.body().string();
+            }catch (Exception e){
                 e.printStackTrace();
             }
-            return "";
+            return null;
         }
-
     }
+//    private class UpdateTask extends AsyncTask<String, String,String> {
+//        protected String doInBackground(String... urls) {
+//
+//            OkHttpClient client = new OkHttpClient();
+//
+//            Request request = new Request.Builder()
+//                    .url("https://covid-19-data.p.rapidapi.com/totals?format=undefined")
+//                    .get()
+//                    .addHeader("x-rapidapi-host", "covid-19-data.p.rapidapi.com")
+//                    .addHeader("x-rapidapi-key", "a06ca0e990msh2b00cb23fe6c85bp125f4ajsne6ce5fdae9c7")
+//                    .build();
+//
+//            try {
+//                Response response = client.newCall(request).execute();
+//                response = client.newCall(request).execute();
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//            return "";
+//        }
+//
+//    }
 }
