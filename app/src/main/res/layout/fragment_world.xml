@@ -65,13 +65,14 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        >
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Confirmed Cases"
-            android:textSize="36sp"
+            android:textSize="25sp"
             android:layout_gravity="center"
             android:textColor="#555555"
             />
@@ -80,24 +81,25 @@
             android:id="@+id/text_total_cases"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="566,654"
-            android:textSize="36sp"
             android:layout_gravity="center"
+            android:fontFamily="serif-monospace"
+            android:text="----"
             android:textColor="@color/blackPrimaryDark"
             android:textFontWeight="700"
-            />
+            android:textSize="23sp" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_marginTop="20dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Deaths"
-            android:textSize="36sp"
+            android:textSize="25sp"
             android:layout_gravity="center"
             android:textColor="#555555"
             />
@@ -106,8 +108,8 @@
             android:id="@+id/text_deaths"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="654"
-            android:textSize="36sp"
+            android:text="----"
+            android:textSize="23sp"
             android:layout_gravity="center"
             android:textColor="@color/redPrimary"
             />
@@ -116,13 +118,14 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_marginTop="20dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Recovered"
-            android:textSize="36sp"
+            android:textSize="25sp"
             android:layout_gravity="center"
             android:textColor="#555555"
             />
@@ -131,8 +134,8 @@
             android:id="@+id/text_recovered"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="6654"
-            android:textSize="36sp"
+            android:text="----"
+            android:textSize="23sp"
             android:layout_gravity="center"
             android:textColor="#8aca2b"
             />
@@ -141,13 +144,14 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_marginTop="20dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Critical"
-                android:textSize="36sp"
+                android:textSize="25sp"
                 android:layout_gravity="center"
                 android:textColor="#555555"
                 />
@@ -156,10 +160,10 @@
                 android:id="@+id/text_critical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="6654"
-                android:textSize="36sp"
+                android:text="----"
+                android:textSize="23sp"
                 android:layout_gravity="center"
-                android:textColor="#8aca2b"
+                android:textColor="@color/blackPrimaryDark"
                 />
         </LinearLayout>
     </LinearLayout>

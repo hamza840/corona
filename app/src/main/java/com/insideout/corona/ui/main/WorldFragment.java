@@ -1,5 +1,6 @@
 package com.insideout.corona.ui.main;
 
+import android.annotation.SuppressLint;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
@@ -16,6 +17,10 @@ import com.insideout.corona.R;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.w3c.dom.Text;
+
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -39,6 +44,7 @@ public class WorldFragment extends Fragment {
     TextView textRecover;
     TextView textCritical;
     TextView textDeath;
+    ViewGroup viewGroup;
 
     public WorldFragment() {
         // Required empty public constructor
@@ -71,12 +77,14 @@ public class WorldFragment extends Fragment {
         }
 
 
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        viewGroup=container;
         textConfirm=(TextView) container.findViewById(R.id.text_total_cases);
         textDeath=(TextView) container.findViewById(R.id.text_deaths);
         textRecover=(TextView) container.findViewById(R.id.text_recovered);
@@ -94,6 +102,7 @@ public class WorldFragment extends Fragment {
         OkHttpClient client = new OkHttpClient();
 
 
+        @SuppressLint("SetTextI18n")
         @Override
         protected void onPostExecute(Object o) {
 
@@ -103,8 +112,24 @@ public class WorldFragment extends Fragment {
 //                JSONObject jsonObject=new JSONObject(o.toString());
                 JSONArray jsonArray=new JSONArray(o.toString());
                 String s=jsonArray.getJSONObject(0).get("confirmed").toString();
-                textConfirm.setText(s);
+                BigDecimal bigDecimal=new BigDecimal(s);
+                NumberFormat df = DecimalFormat.getInstance();
+                if(textConfirm!=null) {
 
+                    textConfirm.setText(df.format(bigDecimal));
+
+                    s=jsonArray.getJSONObject(0).get("recovered").toString();
+                    bigDecimal=new BigDecimal(s);
+                    textRecover.setText(df.format(bigDecimal));
+
+                    s=jsonArray.getJSONObject(0).get("deaths").toString();
+                    bigDecimal=new BigDecimal(s);
+                    textDeath.setText(df.format(bigDecimal));
+
+                    s=jsonArray.getJSONObject(0).get("critical").toString();
+                    bigDecimal=new BigDecimal(s);
+                    textCritical.setText(df.format(bigDecimal));
+                }
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -112,6 +137,11 @@ public class WorldFragment extends Fragment {
 
         @Override
         protected Object doInBackground(Object[] objects) {
+
+            textConfirm=(TextView) viewGroup.findViewById(R.id.text_total_cases);
+            textDeath=(TextView) viewGroup.findViewById(R.id.text_deaths);
+            textRecover=(TextView) viewGroup.findViewById(R.id.text_recovered);
+            textCritical=(TextView) viewGroup.findViewById(R.id.text_critical);
             Request request = new Request.Builder()
                     .url("https://covid-19-data.p.rapidapi.com/totals?format=undefined")
                     .get()
