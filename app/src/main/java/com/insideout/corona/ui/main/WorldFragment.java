@@ -1,5 +1,6 @@
 package com.insideout.corona.ui.main;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,8 +8,18 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
+import com.insideout.corona.MainActivity;
 import com.insideout.corona.R;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.w3c.dom.Text;
+
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -24,6 +35,10 @@ public class WorldFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    TextView textConfirm;
+    TextView textRecover;
+    TextView textCritical;
+    TextView textDeath;
 
     public WorldFragment() {
         // Required empty public constructor
@@ -54,12 +69,63 @@ public class WorldFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        textConfirm=(TextView) container.findViewById(R.id.text_total_cases);
+        textDeath=(TextView) container.findViewById(R.id.text_deaths);
+        textRecover=(TextView) container.findViewById(R.id.text_recovered);
+        textCritical=(TextView) container.findViewById(R.id.text_critical);
+
+
+        OkHttpHandler okHttpHandler= new OkHttpHandler();
+        okHttpHandler.execute("https://covid-19-data.p.rapidapi.com/totals?format=undefined");
         return inflater.inflate(R.layout.fragment_world, container, false);
+    }
+
+
+    public class OkHttpHandler extends AsyncTask {
+
+        OkHttpClient client = new OkHttpClient();
+
+
+        @Override
+        protected void onPostExecute(Object o) {
+
+            super.onPostExecute(o);
+
+            try {
+//                JSONObject jsonObject=new JSONObject(o.toString());
+                JSONArray jsonArray=new JSONArray(o.toString());
+                String s=jsonArray.getJSONObject(0).get("confirmed").toString();
+                textConfirm.setText(s);
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
+        @Override
+        protected Object doInBackground(Object[] objects) {
+            Request request = new Request.Builder()
+                    .url("https://covid-19-data.p.rapidapi.com/totals?format=undefined")
+                    .get()
+                    .addHeader("x-rapidapi-host", "covid-19-data.p.rapidapi.com")
+                    .addHeader("x-rapidapi-key", "a06ca0e990msh2b00cb23fe6c85bp125f4ajsne6ce5fdae9c7")
+                    .build();
+
+            try {
+                Response response = client.newCall(request).execute();
+                return response.body().string();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+            return null;
+        }
     }
 }

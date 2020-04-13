@@ -70,14 +70,14 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Coronavirus Cases"
+            android:text="Confirmed Cases"
             android:textSize="36sp"
             android:layout_gravity="center"
             android:textColor="#555555"
             />
 
         <TextView
-            android:id="@+id/total_cases"
+            android:id="@+id/text_total_cases"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="566,654"
@@ -103,7 +103,7 @@
             />
 
         <TextView
-            android:id="@+id/total_deaths"
+            android:id="@+id/text_deaths"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="654"
@@ -128,7 +128,7 @@
             />
 
         <TextView
-            android:id="@+id/total_recovered"
+            android:id="@+id/text_recovered"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="6654"
@@ -137,6 +137,31 @@
             android:textColor="#8aca2b"
             />
     </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Critical"
+                android:textSize="36sp"
+                android:layout_gravity="center"
+                android:textColor="#555555"
+                />
+
+            <TextView
+                android:id="@+id/text_critical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="6654"
+                android:textSize="36sp"
+                android:layout_gravity="center"
+                android:textColor="#8aca2b"
+                />
+        </LinearLayout>
     </LinearLayout>
 
 
