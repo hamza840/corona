@@ -3,8 +3,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    tools:context=".ui.main.WorldFragment">
+    tools:context=".fragments.WorldFragment">
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/scrollView">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -31,23 +40,23 @@
         android:layout_height="wrap_content"
         android:gravity="center">
         <Button
-            android:id="@+id/buttonTest"
+            android:id="@+id/buttonTest1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Countries"/>
         <Button
-            android:id="@+id/buttonTest"
+            android:id="@+id/buttonTest3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Case Graphs"
             />
         <Button
-            android:id="@+id/buttonTest"
+            android:id="@+id/buttonTest4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Symptoms"/>
         <Button
-            android:id="@+id/buttonTest"
+            android:id="@+id/buttonTest6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             />
@@ -166,8 +175,20 @@
                 android:textColor="@color/blackPrimaryDark"
                 />
         </LinearLayout>
+
+        <com.chargemap_beta.android.tableView.library.TableView
+            android:id="@+id/tableview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:tv_data_background_color="@color/md_white_1000"
+            app:tv_data_borders_color="@color/md_grey_500"
+            app:tv_header_background_color="@color/md_grey_300"
+            app:tv_header_borders_color="@color/md_grey_500"
+            app:tv_headersOnTop="false"
+            app:tv_scrollingEnabled="false"
+            app:tv_padding="8" />
     </LinearLayout>
 
-
-
+        </LinearLayout>
+</ScrollView>
 </LinearLayout>

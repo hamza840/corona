@@ -9,6 +9,8 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.insideout.corona.R;
+import com.insideout.corona.fragments.CountryFragment;
+import com.insideout.corona.fragments.WorldFragment;
 
 /**
  * A [FragmentPagerAdapter] that returns a fragment corresponding to
@@ -36,8 +38,8 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
                 WorldFragment worldFragment=new WorldFragment();
                 return worldFragment;
             case 1:
-                PlaceholderFragment placeholderFragment=new PlaceholderFragment();
-                return placeholderFragment;
+                CountryFragment countryFragment=new CountryFragment();
+                return countryFragment;
             default:
                 return null;
 

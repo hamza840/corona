@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected Object doInBackground(Object[] objects) {
             Request request = new Request.Builder()
-                    .url("https://covid-19-data.p.rapidapi.com/totals?format=undefined")
+                    .url("https://covid-19-data.p.rapidapi.com/country/all?format=undefined")
                     .get()
                     .addHeader("x-rapidapi-host", "covid-19-data.p.rapidapi.com")
                     .addHeader("x-rapidapi-key", "a06ca0e990msh2b00cb23fe6c85bp125f4ajsne6ce5fdae9c7")
